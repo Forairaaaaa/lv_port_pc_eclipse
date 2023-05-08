@@ -14,6 +14,12 @@
 #include "lvgl/examples/lv_examples.h"
 #include "lvgl/demos/lv_demos.h"
 
+
+#include <app/app_manager.h>
+
+MOONCAKE::APP_Manger app_manager;
+
+
 /*********************
  *      DEFINES
  *********************/
