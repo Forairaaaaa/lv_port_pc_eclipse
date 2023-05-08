@@ -118,11 +118,11 @@ static lv_disp_t * hal_init(lv_coord_t w, lv_coord_t h)
   lv_indev_set_group(mouse, lv_group_get_default());
   lv_indev_set_disp(mouse, disp);
 
-  LV_IMG_DECLARE(mouse_cursor_icon); /*Declare the image file.*/
-  lv_obj_t * cursor_obj;
-  cursor_obj = lv_img_create(lv_scr_act());         /*Create an image object for the cursor */
-  lv_img_set_src(cursor_obj, &mouse_cursor_icon);   /*Set the image source*/
-  lv_indev_set_cursor(mouse, cursor_obj);           /*Connect the image  object to the driver*/
+//   LV_IMG_DECLARE(mouse_cursor_icon); /*Declare the image file.*/
+//   lv_obj_t * cursor_obj;
+//   cursor_obj = lv_img_create(lv_scr_act());         /*Create an image object for the cursor */
+//   lv_img_set_src(cursor_obj, &mouse_cursor_icon);   /*Set the image source*/
+//   lv_indev_set_cursor(mouse, cursor_obj);           /*Connect the image  object to the driver*/
 
   lv_indev_t * mousewheel = lv_sdl_mousewheel_create();
   lv_indev_set_disp(mousewheel, disp);
