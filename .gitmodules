@@ -1,3 +1,12 @@
 [submodule "lv_drivers"]
 	path = lv_drivers
 	url = https://github.com/lvgl/lv_drivers.git 
+[submodule "components/lvgl"]
+	path = components/lvgl
+	url = https://github.com/lvgl/lvgl.git
+[submodule "components/LovyanGFX"]
+	path = components/LovyanGFX
+	url = https://github.com/Forairaaaaa/LovyanGFX.git
+[submodule "components/TP-FT3168"]
+	path = components/TP-FT3168
+	url = https://github.com/Forairaaaaa/TP-FT3168.git
