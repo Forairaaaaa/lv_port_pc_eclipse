@@ -17,6 +17,9 @@ add_subdirectory(lvgl)
 add_subdirectory(mooncake)
 
 
+file(GLOB_RECURSE ICONS icons/*.c)
+
+
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin) 
 SET(CMAKE_CXX_FLAGS "-O3")
@@ -26,7 +29,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 
 
-add_executable(main main.cpp mouse_cursor_icon.c ${SOURCES} ${INCLUDES})
+add_executable(main main.cpp mouse_cursor_icon.c ${SOURCES} ${INCLUDES} ${ICONS})
 add_compile_definitions(LV_CONF_INCLUDE_SIMPLE)
 
 

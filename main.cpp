@@ -23,6 +23,22 @@ static void hal_init(void);
 
 
 
+
+LV_IMG_DECLARE(ui_img_icon1_hdpi_png);    // assets\icon1_hdpi.png
+LV_IMG_DECLARE(ui_img_icon2_hdpi_png);    // assets\icon2_hdpi.png
+LV_IMG_DECLARE(ui_img_icon3_hdpi_png);    // assets\icon3_hdpi.png
+LV_IMG_DECLARE(ui_img_icon4_hdpi_png);    // assets\icon4_hdpi.png
+LV_IMG_DECLARE(ui_img_icon5_hdpi_png);    // assets\icon5_hdpi.png
+LV_IMG_DECLARE(ui_img_icon6_hdpi_png);    // assets\icon6_hdpi.png
+LV_IMG_DECLARE(ui_img_icon7_hdpi_png);    // assets\icon7_hdpi.png
+LV_IMG_DECLARE(ui_img_icon8_hdpi_png);    // assets\icon8_hdpi.png
+LV_IMG_DECLARE(ui_img_icon9_hdpi_png);    // assets\icon9_hdpi.png
+LV_IMG_DECLARE(ui_img_icon10_hdpi_png);    // assets\icon10_hdpi.png
+LV_IMG_DECLARE(ui_img_icon11_hdpi_png);    // assets\icon11_hdpi.png
+
+
+
+
 #include <mooncake.h>
 
 
@@ -54,8 +70,9 @@ class AppTest : public MOONCAKE::APP_BASE {
 
 
     public:
-        AppTest(const char* name) {
+        AppTest(const char* name, void* icon = nullptr) {
             setAppName(name);
+            setAppIcon(icon);
         }
 
         void onSetup() {
@@ -197,7 +214,34 @@ int main(int argc, char **argv)
 
     std::string name;
     AppTest* app_ptr = nullptr;
-    for (int i = 0; i < 100; i++) {
+
+
+
+    app_ptr = new AppTest("a", (void*)&ui_img_icon1_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("b", (void*)&ui_img_icon2_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("c", (void*)&ui_img_icon3_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("d", (void*)&ui_img_icon4_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("e", (void*)&ui_img_icon5_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("f", (void*)&ui_img_icon6_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("g", (void*)&ui_img_icon7_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("h", (void*)&ui_img_icon8_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("i", (void*)&ui_img_icon9_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("j", (void*)&ui_img_icon10_hdpi_png);
+    fw.install(app_ptr);
+
+
+
+
+    for (int i = 0; i < 10; i++) {
         name = "Test-" + std::to_string(i);
         // printf("%s\n", name.c_str());
 
