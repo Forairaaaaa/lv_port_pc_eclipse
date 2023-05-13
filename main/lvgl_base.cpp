@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <lvgl.h>
 #include <lv_demos.h>
+#include <lv_examples.h>
 #include <tp_ft3168.hpp>
 #include <LovyanGFX.hpp>
 
@@ -131,8 +132,9 @@ extern "C" void app_main(void)
 
     lcd.init();
     lcd.setColorDepth(16);
+    // lcd.setColorDepth(24);
     lcd.setBrightness(255);
-    lcd.fillScreen(TFT_RED);
+    // lcd.fillScreen(TFT_RED);
 
 
     auto cfg = tp.config();
@@ -148,20 +150,27 @@ extern "C" void app_main(void)
 
 
 
-    // lv_demo_widgets();
-    lv_demo_benchmark();
+    lv_demo_widgets();
+    // lv_demo_benchmark();
+    
+    
+    // lv_example_arc_1();
+    // lv_example_gif_1();
+    // lv_example_btn_2();
+    // lv_example_btn_3();
 
 
 
 
-    lcd.fillScreen(TFT_RED);
-    delay(200);
-    lcd.fillScreen(TFT_GREEN);
-    delay(200);
-    lcd.fillScreen(TFT_BLUE);
-    delay(200);
-    // lcd.fillScreen(TFT_WHITE);
-    delay(200);
+
+    // lcd.fillScreen(TFT_RED);
+    // delay(200);
+    // lcd.fillScreen(TFT_GREEN);
+    // delay(200);
+    // lcd.fillScreen(TFT_BLUE);
+    // delay(200);
+    // // lcd.fillScreen(TFT_WHITE);
+    // delay(200);
 
 
 
@@ -171,7 +180,7 @@ extern "C" void app_main(void)
 
     while (1) {
         lv_timer_handler();
-        delay(10);
+        delay(15);
     }
 
 
@@ -228,8 +237,7 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 
     lcd.startWrite();
     lcd.setWindow(area->x1, area->y1, area->x2, area->y2);
-    // lcd.pushPixels(&color_p->full, w * h, true);
-    lcd.writePixels(&color_p->full, w * h, true);
+    lcd.pushPixels(&color_p->full, w * h, true);
     lcd.endWrite();
 
 
@@ -365,7 +373,7 @@ static void touchpad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 
     tp.getTouchRaw(tpp);
     if(tpp.x != -1) {
-        printf("%d %d\n", tpp.x, tpp.y);
+        // printf("%d %d\n", tpp.x, tpp.y);
         data->point.x = tpp.x;
         data->point.y = tpp.y;
         data->state = LV_INDEV_STATE_PR;
