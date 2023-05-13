@@ -17,7 +17,6 @@
 
 
 
-
 #define MY_DISP_HOR_RES 368
 #define MY_DISP_VER_RES 448
 #define LV_VER_RES_MAX  448
@@ -179,8 +178,9 @@ extern "C" void app_main(void)
 
 
     while (1) {
+        
         lv_timer_handler();
-        delay(15);
+        delay(5);
     }
 
 
