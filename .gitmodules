@@ -10,3 +10,6 @@
 [submodule "components/TP-FT3168"]
 	path = components/TP-FT3168
 	url = https://github.com/Forairaaaaa/TP-FT3168.git
+[submodule "components/mooncake"]
+	path = components/mooncake
+	url = git@github.com:Forairaaaaa/mooncake.git

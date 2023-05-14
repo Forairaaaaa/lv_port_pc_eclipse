@@ -73,6 +73,11 @@ class LGFX_Monica : public lgfx::LGFX_Device {
 
                 cfg.panel_width      =   368;  // 実際に表示可能な幅
                 cfg.panel_height     =   448;  // 実際に表示可能な高さ
+
+                // cfg.panel_width      =   320;  // 実際に表示可能な幅
+                // cfg.panel_height     =   240;  // 実際に表示可能な高さ
+
+
                 cfg.offset_x         =     0;  // パネルのX方向オフセット量
                 cfg.offset_y         =     0;  // パネルのY方向オフセット量
                 cfg.offset_rotation  =     0;  // 回転方向の値のオフセット 0~7 (4~7は上下反転)
@@ -108,6 +113,167 @@ static FT3168::tp_ft3168 tp;
 
 void lv_port_disp_init();
 void lv_port_indev_init();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <mooncake.h>
+
+
+
+
+MOONCAKE::Framework fw;
+
+int btn_value = 0;
+
+class AppTest : public MOONCAKE::APP_BASE {
+    private:
+
+        lv_obj_t* screen;
+        int bbb1;
+        int bbb2;
+
+        uint32_t ticks;
+
+        static void event_handler(lv_event_t * e)
+        {
+            lv_event_code_t code = lv_event_get_code(e);
+
+            if(code == LV_EVENT_CLICKED) {
+
+                btn_value = *(int*)lv_event_get_user_data(e);
+                
+            }
+
+        }
+
+
+    public:
+        AppTest(const char* name, void* icon = nullptr) {
+            setAppName(name);
+            setAppIcon(icon);
+        }
+
+        void onSetup() {
+        }
+
+        /* Life cycle */
+        void onCreate() {
+            printf("[%s] onCreate\n", getAppName().c_str());
+
+            setAllowBgRunning(false);
+
+        }
+        void onResume() {
+            printf("[%s] onResume\n", getAppName().c_str());
+
+
+            btn_value = 0;
+
+
+            screen = lv_obj_create(NULL);
+            lv_scr_load_anim(screen, LV_SCR_LOAD_ANIM_FADE_IN, 200, 0, false);
+            
+
+            lv_obj_t * label;
+
+            lv_obj_t * btn1 = lv_btn_create(screen);
+            bbb1 = 1;
+            lv_obj_add_event_cb(btn1, event_handler, LV_EVENT_ALL, (void*)&bbb1);
+            lv_obj_align(btn1, LV_ALIGN_CENTER, 0, -40);
+
+            label = lv_label_create(btn1);
+            // lv_obj_add_flag(btn1, LV_OBJ_FLAG_CHECKABLE);
+            lv_obj_add_state(btn1, LV_STATE_CHECKED);
+            lv_label_set_text(label, "Quit App");
+            lv_obj_center(label);
+
+
+
+            lv_obj_t * btn2 = lv_btn_create(screen);
+            bbb2 = 2;
+            lv_obj_add_event_cb(btn2, event_handler, LV_EVENT_ALL, (void*)&bbb2);
+            lv_obj_align(btn2, LV_ALIGN_CENTER, 0, 40);
+
+            label = lv_label_create(btn2);
+            lv_label_set_text(label, "Run background");
+            lv_obj_center(label);
+
+
+
+        }
+        void onRunning() {
+            // printf("[%s] onRunning\n", getAppName().c_str());
+
+            if ((lv_tick_get() - ticks) > 1000) {
+                printf("[%s] onRunning\n", getAppName().c_str());
+                ticks = lv_tick_get();
+            }
+
+
+            // printf("%d\n", btn_value);
+            if (btn_value == 1) {
+                setAllowBgRunning(false);
+                destroyApp();
+            }
+            else if (btn_value == 2) {
+                setAllowBgRunning(true);
+                closeApp();
+            }
+
+
+
+        }   
+        void onRunningBG() {
+            // printf("[%s] onRunningBG\n", getAppName().c_str());
+
+            if ((lv_tick_get() - ticks) > 1000) {
+                printf("[%s] onRunningBG\n", getAppName().c_str());
+                ticks = lv_tick_get();
+            }
+        }
+        void onPause() {
+            printf("[%s] onPause\n", getAppName().c_str());
+        }
+        void onDestroy() {
+            printf("[%s] onDestroy\n", getAppName().c_str());
+        }
+};
+
+
+
+
+
+
+LV_IMG_DECLARE(ui_img_icon1_hdpi_png);    // assets\icon1_hdpi.png
+LV_IMG_DECLARE(ui_img_icon2_hdpi_png);    // assets\icon2_hdpi.png
+LV_IMG_DECLARE(ui_img_icon3_hdpi_png);    // assets\icon3_hdpi.png
+LV_IMG_DECLARE(ui_img_icon4_hdpi_png);    // assets\icon4_hdpi.png
+LV_IMG_DECLARE(ui_img_icon5_hdpi_png);    // assets\icon5_hdpi.png
+LV_IMG_DECLARE(ui_img_icon6_hdpi_png);    // assets\icon6_hdpi.png
+LV_IMG_DECLARE(ui_img_icon7_hdpi_png);    // assets\icon7_hdpi.png
+LV_IMG_DECLARE(ui_img_icon8_hdpi_png);    // assets\icon8_hdpi.png
+LV_IMG_DECLARE(ui_img_icon9_hdpi_png);    // assets\icon9_hdpi.png
+LV_IMG_DECLARE(ui_img_icon10_hdpi_png);    // assets\icon10_hdpi.png
+LV_IMG_DECLARE(ui_img_icon11_hdpi_png);    // assets\icon11_hdpi.png
+
+
+
 
 
 
@@ -149,7 +315,7 @@ extern "C" void app_main(void)
 
 
 
-    lv_demo_widgets();
+    // lv_demo_widgets();
     // lv_demo_benchmark();
     
     
@@ -173,12 +339,55 @@ extern "C" void app_main(void)
 
 
 
-    
+
+
+    printf("%ld %ld\n", lcd.width(), lcd.height());
+    fw.setDisplay(lcd.width(), lcd.height());
+    fw.init();
+
+
+    std::string name;
+    AppTest* app_ptr = nullptr;
+
+
+
+    app_ptr = new AppTest("a", (void*)&ui_img_icon1_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("b", (void*)&ui_img_icon2_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("c", (void*)&ui_img_icon3_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("d", (void*)&ui_img_icon4_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("e", (void*)&ui_img_icon5_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("f", (void*)&ui_img_icon6_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("g", (void*)&ui_img_icon7_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("h", (void*)&ui_img_icon8_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("i", (void*)&ui_img_icon9_hdpi_png);
+    fw.install(app_ptr);
+    app_ptr = new AppTest("j", (void*)&ui_img_icon10_hdpi_png);
+    fw.install(app_ptr);
+
+
+
+
+    for (int i = 0; i < 10; i++) {
+        name = "Test-" + std::to_string(i);
+        // printf("%s\n", name.c_str());
+
+        app_ptr = new AppTest(name.c_str());
+        fw.install(app_ptr);
+
+    }
 
 
 
     while (1) {
-        
+        fw.update();
         lv_timer_handler();
         delay(5);
     }
@@ -303,8 +512,10 @@ void lv_port_disp_init()
     /* Try to get buffer from PSRAM */
     // lv_color_t * buf_3_1 = (lv_color_t *)ps_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t));
     // lv_color_t * buf_3_2 = (lv_color_t *)ps_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t));
-    lv_color_t * buf_3_1 = (lv_color_t *)heap_caps_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t), MALLOC_CAP_SPIRAM);
-    lv_color_t * buf_3_2 = (lv_color_t *)heap_caps_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t), MALLOC_CAP_SPIRAM);
+    // lv_color_t * buf_3_1 = (lv_color_t *)heap_caps_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t), MALLOC_CAP_SPIRAM);
+    // lv_color_t * buf_3_2 = (lv_color_t *)heap_caps_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES * sizeof(lv_color_t), MALLOC_CAP_SPIRAM);
+    lv_color_t * buf_3_1 = (lv_color_t *)heap_caps_malloc(lcd.width() * lcd.height() * sizeof(lv_color_t), MALLOC_CAP_SPIRAM);
+    lv_color_t * buf_3_2 = (lv_color_t *)heap_caps_malloc(lcd.width() * lcd.height() * sizeof(lv_color_t), MALLOC_CAP_SPIRAM);
 
 
 
@@ -331,8 +542,10 @@ void lv_port_disp_init()
     /*Set up the functions to access to your display*/
 
     /*Set the resolution of the display*/
-    disp_drv.hor_res = MY_DISP_HOR_RES;
-    disp_drv.ver_res = MY_DISP_VER_RES;
+    // disp_drv.hor_res = MY_DISP_HOR_RES;
+    // disp_drv.ver_res = MY_DISP_VER_RES;
+    disp_drv.hor_res = lcd.width();
+    disp_drv.ver_res = lcd.height();
 
     /*Used to copy the buffer's content to the display*/
     disp_drv.flush_cb = disp_flush;
