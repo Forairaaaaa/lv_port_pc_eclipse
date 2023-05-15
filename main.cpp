@@ -43,6 +43,7 @@ LV_IMG_DECLARE(ui_img_icon11_hdpi_png);    // assets\icon11_hdpi.png
 
 
 
+
 MOONCAKE::Framework fw;
 
 int btn_value = 0;
@@ -206,9 +207,13 @@ int main(int argc, char **argv)
 
 
 
-
+    
 
     fw.setDisplay(SDL_HOR_RES, SDL_VER_RES);
+    
+    // MOONCAKE::BUILTIN_APP::Launcher_Bubble* launcher = new MOONCAKE::BUILTIN_APP::Launcher_Bubble;
+    // fw.setLauncher(launcher);
+
     fw.init();
 
 
