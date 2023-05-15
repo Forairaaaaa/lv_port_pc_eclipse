@@ -187,7 +187,7 @@ class AppTest : public MOONCAKE::APP_BASE {
 
 
             screen = lv_obj_create(NULL);
-            lv_scr_load_anim(screen, LV_SCR_LOAD_ANIM_FADE_IN, 200, 0, false);
+            lv_scr_load_anim(screen, LV_SCR_LOAD_ANIM_MOVE_TOP, 100, 0, false);
             
 
             lv_obj_t * label;
@@ -375,7 +375,7 @@ extern "C" void app_main(void)
 
 
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 2; i++) {
         name = "Test-" + std::to_string(i);
         // printf("%s\n", name.c_str());
 
