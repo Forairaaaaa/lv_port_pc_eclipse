@@ -165,6 +165,10 @@ class AppTest : public MOONCAKE::APP_BASE {
 
 
 
+
+extern const uint8_t walking_icon[];
+
+
 int main(int argc, char **argv)
 {
   (void)argc; /*Unused*/
@@ -196,12 +200,34 @@ int main(int argc, char **argv)
 
     // lv_demo_widgets();
 
-    // while(1) {
-    //     /* Periodically call the lv_task handler.
-    //     * It could be done in a timer interrupt or an OS task too.*/
-    //     lv_timer_handler();
-    //     usleep(5 * 1000);
-    // }
+
+
+    // lv_example_rlottie_1();
+    // lv_example_rlottie_2();
+
+
+
+
+
+
+    // lv_obj_t * lottie = lv_rlottie_create_from_file(lv_scr_act(), 500, 500, "icons/49879-walking-duck.json");
+    // lv_obj_t* lottie = lv_rlottie_create_from_raw(lv_scr_act(), 500, 500, (const char *)walking_icon);
+    lv_obj_t * lottie = lv_rlottie_create_from_file(lv_scr_act(), 100, 100, "icons/142051-toucan-walk-cycle.json");
+    lv_obj_center(lottie);
+
+
+    // lv_rlottie_set_play_mode(lottie, LV_RLOTTIE_CTRL_PLAY | LV_RLOTTIE_CTRL_FORWARD | LV_RLOTTIE_CTRL_LOOP);
+
+
+
+
+
+    while(1) {
+        /* Periodically call the lv_task handler.
+        * It could be done in a timer interrupt or an OS task too.*/
+        lv_timer_handler();
+        usleep(5 * 1000);
+    }
 
 
 

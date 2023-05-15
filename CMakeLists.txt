@@ -13,11 +13,20 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR})
 file(GLOB_RECURSE INCLUDES "lv_drivers/*.h" "./*.h" )
 file(GLOB_RECURSE SOURCES  "lv_drivers/*.c")
 
+
+
+add_subdirectory(rlottie)
+include_directories(rlottie/inc)
+
+
 add_subdirectory(lvgl)
 add_subdirectory(mooncake)
 
 
-file(GLOB_RECURSE ICONS icons/*.c)
+file(GLOB_RECURSE ICONS
+    icons/*.c
+    icons/*.cpp
+)
 
 
 
@@ -31,6 +40,8 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 add_executable(main main.cpp mouse_cursor_icon.c ${SOURCES} ${INCLUDES} ${ICONS})
 add_compile_definitions(LV_CONF_INCLUDE_SIMPLE)
+
+
 
 
 target_link_libraries(main PRIVATE SDL2 lvgl lvgl::examples lvgl::demos mooncake)

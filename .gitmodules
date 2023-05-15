@@ -7,3 +7,6 @@
 [submodule "mooncake"]
 	path = mooncake
 	url = git@github.com:Forairaaaaa/mooncake.git
+[submodule "rlottie"]
+	path = rlottie
+	url = https://github.com/Samsung/rlottie.git
