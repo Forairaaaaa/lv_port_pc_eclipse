@@ -212,8 +212,8 @@ int main(int argc, char **argv)
 
     // lv_obj_t * lottie = lv_rlottie_create_from_file(lv_scr_act(), 500, 500, "icons/49879-walking-duck.json");
     // lv_obj_t* lottie = lv_rlottie_create_from_raw(lv_scr_act(), 500, 500, (const char *)walking_icon);
-    lv_obj_t * lottie = lv_rlottie_create_from_file(lv_scr_act(), 100, 100, "icons/142051-toucan-walk-cycle.json");
-    lv_obj_center(lottie);
+    // lv_obj_t * lottie = lv_rlottie_create_from_file(lv_scr_act(), 100, 100, "icons/142051-toucan-walk-cycle.json");
+    // lv_obj_center(lottie);
 
 
     // lv_rlottie_set_play_mode(lottie, LV_RLOTTIE_CTRL_PLAY | LV_RLOTTIE_CTRL_FORWARD | LV_RLOTTIE_CTRL_LOOP);
@@ -222,12 +222,12 @@ int main(int argc, char **argv)
 
 
 
-    while(1) {
-        /* Periodically call the lv_task handler.
-        * It could be done in a timer interrupt or an OS task too.*/
-        lv_timer_handler();
-        usleep(5 * 1000);
-    }
+    // while(1) {
+    //     /* Periodically call the lv_task handler.
+    //     * It could be done in a timer interrupt or an OS task too.*/
+    //     lv_timer_handler();
+    //     usleep(5 * 1000);
+    // }
 
 
 
@@ -272,14 +272,14 @@ int main(int argc, char **argv)
 
 
 
-    for (int i = 0; i < 10; i++) {
-        name = "Test-" + std::to_string(i);
-        // printf("%s\n", name.c_str());
+    // for (int i = 0; i < 10; i++) {
+    //     name = "Test-" + std::to_string(i);
+    //     // printf("%s\n", name.c_str());
 
-        app_ptr = new AppTest(name.c_str());
-        fw.install(app_ptr);
+    //     app_ptr = new AppTest(name.c_str());
+    //     fw.install(app_ptr);
 
-    }
+    // }
 
 
 
