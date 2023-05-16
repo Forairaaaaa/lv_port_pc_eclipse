@@ -94,7 +94,7 @@ class AppTest : public MOONCAKE::APP_BASE {
 
 
             screen = lv_obj_create(NULL);
-            lv_scr_load_anim(screen, LV_SCR_LOAD_ANIM_FADE_IN, 200, 0, false);
+            lv_scr_load_anim(screen, LV_SCR_LOAD_ANIM_MOVE_TOP, 100, 0, false);
             
 
             lv_obj_t * label;
