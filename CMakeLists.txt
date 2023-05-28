@@ -20,7 +20,8 @@ include_directories(rlottie/inc)
 
 
 add_subdirectory(lvgl)
-add_subdirectory(mooncake)
+add_subdirectory(ArduinoJson)
+add_subdirectory(mooncake_new)
 
 
 file(GLOB_RECURSE ICONS

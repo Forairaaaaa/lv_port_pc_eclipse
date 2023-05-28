@@ -44,7 +44,7 @@ LV_IMG_DECLARE(ui_img_icon11_hdpi_png);    // assets\icon11_hdpi.png
 
 
 
-MOONCAKE::Framework fw;
+MOONCAKE::Mooncake mooncake;
 
 int btn_value = 0;
 
@@ -235,12 +235,13 @@ int main(int argc, char **argv)
 
     
 
-    fw.setDisplay(SDL_HOR_RES, SDL_VER_RES);
+    mooncake.setDisplay(SDL_HOR_RES, SDL_VER_RES);
     
     // MOONCAKE::BUILTIN_APP::Launcher_Bubble* launcher = new MOONCAKE::BUILTIN_APP::Launcher_Bubble;
-    // fw.setLauncher(launcher);
+    // mooncake.setLauncher(launcher);
 
-    fw.init();
+    mooncake.init();
+    mooncake.installBuiltinApps();
 
 
     std::string name;
@@ -249,25 +250,25 @@ int main(int argc, char **argv)
 
 
     app_ptr = new AppTest("a", (void*)&ui_img_icon1_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
     app_ptr = new AppTest("b", (void*)&ui_img_icon2_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
     app_ptr = new AppTest("c", (void*)&ui_img_icon3_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
     app_ptr = new AppTest("d", (void*)&ui_img_icon4_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
     app_ptr = new AppTest("e", (void*)&ui_img_icon5_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
     app_ptr = new AppTest("f", (void*)&ui_img_icon6_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
     app_ptr = new AppTest("g", (void*)&ui_img_icon7_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
     app_ptr = new AppTest("h", (void*)&ui_img_icon8_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
     app_ptr = new AppTest("i", (void*)&ui_img_icon9_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
     app_ptr = new AppTest("j", (void*)&ui_img_icon10_hdpi_png);
-    fw.install(app_ptr);
+    mooncake.install(app_ptr);
 
 
 
@@ -277,14 +278,14 @@ int main(int argc, char **argv)
     //     // printf("%s\n", name.c_str());
 
     //     app_ptr = new AppTest(name.c_str());
-    //     fw.install(app_ptr);
+    //     mooncake.install(app_ptr);
 
     // }
 
 
 
     while (1) {
-        fw.update();
+        mooncake.update();
         lv_timer_handler();
 
         usleep(5 * 1000);

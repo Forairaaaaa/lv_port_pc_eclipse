@@ -1,0 +1,10 @@
+{
+    "name" : "Floating-Number",
+    "use_gif_background" : "no",
+    "pos_clock_hour_a" : [-66, -84],
+    "pos_clock_hour_b" : [73, -84],
+    "pos_clock_colon" : [0, 0],
+    "pos_clock_min_a" : [-13, 108],
+    "pos_clock_min_b" : [126, 108]
+}
+

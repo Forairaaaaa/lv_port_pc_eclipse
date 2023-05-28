@@ -7,3 +7,12 @@
 [submodule "rlottie"]
 	path = rlottie
 	url = https://github.com/Samsung/rlottie.git
+[submodule "mooncake"]
+	path = mooncake
+	url = git@github.com:Forairaaaaa/mooncake.git
+[submodule "mooncake_new"]
+	path = mooncake_new
+	url = git@github.com:Forairaaaaa/mooncake.git
+[submodule "ArduinoJson"]
+	path = ArduinoJson
+	url = https://github.com/bblanchon/ArduinoJson.git

@@ -1,0 +1,10 @@
+{
+    "name" : "Watch face B",
+    "use_gif_background" : "no",
+    "pos_clock_hour_a" : [-120, 0],
+    "pos_clock_hour_b" : [-60, 0],
+    "pos_clock_colon" : [0, 0],
+    "pos_clock_min_a" : [60, 0],
+    "pos_clock_min_b" : [120, 0]
+}
+
