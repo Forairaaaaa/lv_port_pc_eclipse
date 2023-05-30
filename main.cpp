@@ -249,8 +249,8 @@ int main(int argc, char **argv)
 
 
 
-    app_ptr = new AppTest("a", (void*)&ui_img_icon1_hdpi_png);
-    mooncake.install(app_ptr);
+    // app_ptr = new AppTest("a", (void*)&ui_img_icon1_hdpi_png);
+    // mooncake.install(app_ptr);
     app_ptr = new AppTest("b", (void*)&ui_img_icon2_hdpi_png);
     mooncake.install(app_ptr);
     app_ptr = new AppTest("c", (void*)&ui_img_icon3_hdpi_png);
