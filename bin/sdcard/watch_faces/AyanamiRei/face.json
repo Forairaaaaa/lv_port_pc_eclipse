@@ -1,0 +1,10 @@
+{
+    "name" : "Ayanami Rei",
+    "use_gif_background" : "no",
+    "pos_clock_hour_a" : [89, -153],
+    "pos_clock_hour_b" : [147, -153],
+    "pos_clock_colon" : [0, 0],
+    "pos_clock_min_a" : [89, -46],
+    "pos_clock_min_b" : [147, -46]
+}
+
