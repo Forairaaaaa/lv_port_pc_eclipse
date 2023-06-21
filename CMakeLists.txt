@@ -38,8 +38,8 @@ find_package(SDL2 REQUIRED SDL2)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 
-
-add_executable(main main.cpp mouse_cursor_icon.c ${SOURCES} ${INCLUDES} ${ICONS})
+include_directories(cc_meter/)
+add_executable(main main.cpp mouse_cursor_icon.c cc_meter/cc_meter.cpp ${SOURCES} ${INCLUDES} ${ICONS})
 add_compile_definitions(LV_CONF_INCLUDE_SIMPLE)
 
 
