@@ -16,6 +16,8 @@
 #include "lvgl/examples/lv_examples.h"
 #include "lvgl/demos/lv_demos.h"
 #include "lv_drivers/sdl/sdl.h"
+#include <iostream>
+#include <array>
 
 
 static void hal_init(void);
@@ -243,12 +245,21 @@ int main(int argc, char **argv)
     cc_meter.onResume();
 
 
+    std::array<std::string, 5> value_list;
+    value_list[0] = "12.233";
+    value_list[1] = "5.666";
+    value_list[2] = "11.648";
+    value_list[3] = "1.555";
+    value_list[4] = "666";
+
 
     while (1) {
         lv_timer_handler();
 
 
         cc_meter.onRunning();
+
+        cc_meter.updatePageValue(value_list);
 
 
         usleep(5 * 1000);

@@ -12,7 +12,9 @@
 #include "mooncake_new/src/app/app.h"
 #include <lvgl.h>
 
-
+#include <iostream>
+#include <array>
+#include <string>
 
 
 namespace MOONCAKE {
@@ -30,14 +32,16 @@ namespace MOONCAKE {
                     lv_obj_t* panel_bottom = nullptr;
 
                     static void _lvgl_event_cb(lv_event_t* e);
-                    void create(uint8_t pageNum, uint32_t themeColor, void* eventUserData = nullptr);
+                    void create(uint8_t pageNum, void* pmPtr);
             };
+
 
             struct PageManager_t {
                 public:
                     PageManager_t() : _current_page_num(0) {}
 
                     uint32_t _theme_color_list[5] = {0xE56363, 0x87A271, 0x6F8CC8, 0x9B77B4, 0x000000};
+                    const char* _banner_list[5] = {"Bus Volt (V)", "Bus Pow (W)", "Shunt Volt (V)", "Shunt Cur (A)", "5"};
                     SimplePage_t _current_page;
                     uint8_t _current_page_num;
 
@@ -46,6 +50,8 @@ namespace MOONCAKE {
                     void go_last();
 
             };
+
+
 
         }
 
@@ -58,6 +64,10 @@ namespace MOONCAKE {
             public:
                 CCMeter() = default;
                 ~CCMeter() = default;
+
+
+                inline CCMETER::PageManager_t* getPageMG() { return &_page; }
+                void updatePageValue(const std::array<std::string, 5>& valueList);
 
 
                 /**

@@ -40,8 +40,8 @@ void anim_spinner_Animation(lv_obj_t * TargetObject, int delay)
     lv_anim_set_repeat_delay(&PropertyAnimation_0, 0);
     lv_anim_set_early_apply(&PropertyAnimation_0, false);
     lv_anim_start(&PropertyAnimation_0);
-
 }
+
 void anim_bottom_pop_up_Animation(lv_obj_t * TargetObject, int delay)
 {
     ui_anim_user_data_t * PropertyAnimation_0_user_data = (ui_anim_user_data_t *)lv_mem_alloc(sizeof(ui_anim_user_data_t));
@@ -64,6 +64,7 @@ void anim_bottom_pop_up_Animation(lv_obj_t * TargetObject, int delay)
     lv_anim_start(&PropertyAnimation_0);
 
 }
+
 void anim_value_pop_in_Animation(lv_obj_t * TargetObject, int delay)
 {
     ui_anim_user_data_t * PropertyAnimation_0_user_data = (ui_anim_user_data_t *)lv_mem_alloc(sizeof(ui_anim_user_data_t));
@@ -86,6 +87,7 @@ void anim_value_pop_in_Animation(lv_obj_t * TargetObject, int delay)
     lv_anim_start(&PropertyAnimation_0);
 
 }
+
 void anim_banner_pop_in_Animation(lv_obj_t * TargetObject, int delay)
 {
     ui_anim_user_data_t * PropertyAnimation_0_user_data = (ui_anim_user_data_t *)lv_mem_alloc(sizeof(ui_anim_user_data_t));
@@ -144,16 +146,17 @@ namespace MOONCAKE {
             }
 
 
-            void SimplePage_t::create(uint8_t pageNum, uint32_t themeColor, void* eventUserData)
+            void SimplePage_t::create(uint8_t pageNum, void* pmPtr)
             {
                 /* Screen */
                 this->screen = lv_obj_create(NULL);
                 lv_obj_clear_flag(this->screen, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-                lv_obj_set_style_bg_color(this->screen, lv_color_hex(themeColor), LV_PART_MAIN | LV_STATE_DEFAULT);
+                lv_obj_set_style_bg_color(this->screen, lv_color_hex(((PageManager_t*)pmPtr)->_theme_color_list[pageNum]), LV_PART_MAIN | LV_STATE_DEFAULT);
 
                 /* Label value */
                 this->label_value = lv_label_create(this->screen);
-                lv_obj_set_x(this->label_value, 0);
+                // lv_obj_set_x(this->label_value, 0);
+                lv_obj_set_x(this->label_value, -240);
                 lv_obj_set_y(this->label_value, -59);
                 lv_obj_set_align(this->label_value, LV_ALIGN_CENTER);
                 lv_label_set_text(this->label_value, "12.233");
@@ -162,10 +165,11 @@ namespace MOONCAKE {
 
                 /* Label banner */
                 this->label_banner = lv_label_create(this->screen);
-                lv_obj_set_x(this->label_banner, 28);
+                // lv_obj_set_x(this->label_banner, 28);
+                lv_obj_set_x(this->label_banner, 240);
                 lv_obj_set_y(this->label_banner, 5);
                 lv_obj_set_align(this->label_banner, LV_ALIGN_CENTER);
-                lv_label_set_text(this->label_banner, "Bus Volt (V)");
+                lv_label_set_text(this->label_banner, ((PageManager_t*)pmPtr)->_banner_list[pageNum]);
                 lv_obj_set_style_text_color(this->label_banner, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
                 lv_obj_set_style_text_font(this->label_banner, &ui_font_MontserratSemiBoldItalic24, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -174,7 +178,8 @@ namespace MOONCAKE {
                 lv_obj_set_width(this->panel_bottom, 240);
                 lv_obj_set_height(this->panel_bottom, 66);
                 lv_obj_set_x(this->panel_bottom, 0);
-                lv_obj_set_y(this->panel_bottom, 87);
+                // lv_obj_set_y(this->panel_bottom, 87);
+                lv_obj_set_y(this->panel_bottom, 160);
                 lv_obj_set_align(this->panel_bottom, LV_ALIGN_CENTER);
                 lv_obj_clear_flag(this->panel_bottom, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
                 lv_obj_set_style_radius(this->panel_bottom, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -199,24 +204,30 @@ namespace MOONCAKE {
                 lv_obj_add_flag(ui_ImageSpiner, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
                 lv_obj_clear_flag(ui_ImageSpiner, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
+                /* Keep it spinning */
+                anim_spinner_Animation(ui_ImageSpiner, 0);
+
                 lv_obj_t* ui_LabelPage = lv_label_create(this->panel_bottom);
                 lv_obj_set_x(ui_LabelPage, 82);
                 lv_obj_set_y(ui_LabelPage, 13);
                 lv_obj_set_align(ui_LabelPage, LV_ALIGN_CENTER);
                 lv_label_set_text_fmt(ui_LabelPage, "- %d -", pageNum + 1);
-                lv_obj_set_style_text_color(ui_LabelPage, lv_color_hex(themeColor), LV_PART_MAIN | LV_STATE_DEFAULT);
+                lv_obj_set_style_text_color(ui_LabelPage, lv_color_hex(((PageManager_t*)pmPtr)->_theme_color_list[pageNum]), LV_PART_MAIN | LV_STATE_DEFAULT);
                 lv_obj_set_style_text_opa(ui_LabelPage, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
                 lv_obj_set_style_text_font(ui_LabelPage, &ui_font_MontserratSemiBoldItalic24, LV_PART_MAIN | LV_STATE_DEFAULT);
 
                 /* Add event */
-                lv_obj_add_event_cb(this->screen, _lvgl_event_cb, LV_EVENT_GESTURE, eventUserData);
+                lv_obj_add_event_cb(this->screen, _lvgl_event_cb, LV_EVENT_GESTURE, pmPtr);
             }
 
 
             void PageManager_t::go_to_page(uint8_t pageNum)
             {
+                /* Clear all anims */
+                lv_anim_del_all();
+
                 /* Create a page */
-                _current_page.create(pageNum, _theme_color_list[pageNum], this);
+                _current_page.create(pageNum, this);
 
                 /* Load screen */
                 if (pageNum >= _current_page_num) {
@@ -227,9 +238,11 @@ namespace MOONCAKE {
                 }
 
                 /* Load widgets */
+                anim_value_pop_in_Animation(_current_page.label_value, 200);
+                anim_banner_pop_in_Animation(_current_page.label_banner, 200);
+                anim_bottom_pop_up_Animation(_current_page.panel_bottom, 150);
 
-
-
+                /* Update current */
                 _current_page_num = pageNum;
             }
 
@@ -260,6 +273,15 @@ namespace MOONCAKE {
         }
 
 
+        void CCMeter::updatePageValue(const std::array<std::string, 5>& valueList)
+        {
+            /* In simple pages */
+            if (_page._current_page_num != 4) {
+                lv_label_set_text(_page._current_page.label_value, valueList[_page._current_page_num].c_str());
+            }
+        }
+
+
         void CCMeter::onSetup()
         {
             setAppName("CC Meter");
@@ -274,9 +296,7 @@ namespace MOONCAKE {
         {
             printf("[%s] onCreate\n", getAppName().c_str());
 
-
             _page.go_to_page(0);
-
         }
 
 
@@ -289,8 +309,6 @@ namespace MOONCAKE {
         void CCMeter::onRunning()
         {
             // printf("66666\n");
-
-
         }
 
 
