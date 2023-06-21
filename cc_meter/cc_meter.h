@@ -21,10 +21,29 @@ namespace MOONCAKE {
 
         namespace CCMETER {
 
-            struct Data_t {
 
-                lv_obj_t* screen_list[5];
-                uint8_t current_screen;
+            struct SimplePage_t {
+                public:
+                    lv_obj_t* screen = nullptr;
+                    lv_obj_t* label_value = nullptr;
+                    lv_obj_t* label_banner = nullptr;
+                    lv_obj_t* panel_bottom = nullptr;
+
+                    static void _lvgl_event_cb(lv_event_t* e);
+                    void create(uint8_t pageNum, uint32_t themeColor, void* eventUserData = nullptr);
+            };
+
+            struct PageManager_t {
+                public:
+                    PageManager_t() : _current_page_num(0) {}
+
+                    uint32_t _theme_color_list[5] = {0xE56363, 0x87A271, 0x6F8CC8, 0x9B77B4, 0x000000};
+                    SimplePage_t _current_page;
+                    uint8_t _current_page_num;
+
+                    void go_to_page(uint8_t pageNum);
+                    void go_next();
+                    void go_last();
 
             };
 
@@ -33,10 +52,7 @@ namespace MOONCAKE {
 
         class CCMeter : public APP_BASE {
             private:
-                CCMETER::Data_t _data;
-
-                static void _lvgl_event_cb(lv_event_t* e);
-                
+                CCMETER::PageManager_t _page;
 
 
             public:

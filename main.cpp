@@ -169,6 +169,11 @@ class AppTest : public MOONCAKE::APP_BASE {
 extern const uint8_t walking_icon[];
 
 
+
+#include "cc_meter/cc_meter.h"
+
+
+
 int main(int argc, char **argv)
 {
   (void)argc; /*Unused*/
@@ -230,66 +235,85 @@ int main(int argc, char **argv)
     // }
 
 
+    MOONCAKE::USER_APP::CCMeter cc_meter;
 
 
-
-    
-
-    mooncake.setDisplay(SDL_HOR_RES, SDL_VER_RES);
-    
-    // MOONCAKE::BUILTIN_APP::Launcher_Bubble* launcher = new MOONCAKE::BUILTIN_APP::Launcher_Bubble;
-    // mooncake.setLauncher(launcher);
-
-    mooncake.init();
-    mooncake.installBuiltinApps();
-
-
-    std::string name;
-    AppTest* app_ptr = nullptr;
-
-
-
-    // app_ptr = new AppTest("a", (void*)&ui_img_icon1_hdpi_png);
-    // mooncake.install(app_ptr);
-    app_ptr = new AppTest("b", (void*)&ui_img_icon2_hdpi_png);
-    mooncake.install(app_ptr);
-    app_ptr = new AppTest("c", (void*)&ui_img_icon3_hdpi_png);
-    mooncake.install(app_ptr);
-    app_ptr = new AppTest("d", (void*)&ui_img_icon4_hdpi_png);
-    mooncake.install(app_ptr);
-    app_ptr = new AppTest("e", (void*)&ui_img_icon5_hdpi_png);
-    mooncake.install(app_ptr);
-    app_ptr = new AppTest("f", (void*)&ui_img_icon6_hdpi_png);
-    mooncake.install(app_ptr);
-    app_ptr = new AppTest("g", (void*)&ui_img_icon7_hdpi_png);
-    mooncake.install(app_ptr);
-    app_ptr = new AppTest("h", (void*)&ui_img_icon8_hdpi_png);
-    mooncake.install(app_ptr);
-    app_ptr = new AppTest("i", (void*)&ui_img_icon9_hdpi_png);
-    mooncake.install(app_ptr);
-    app_ptr = new AppTest("j", (void*)&ui_img_icon10_hdpi_png);
-    mooncake.install(app_ptr);
-
-
-
-
-    // for (int i = 0; i < 10; i++) {
-    //     name = "Test-" + std::to_string(i);
-    //     // printf("%s\n", name.c_str());
-
-    //     app_ptr = new AppTest(name.c_str());
-    //     mooncake.install(app_ptr);
-
-    // }
+    cc_meter.onSetup();
+    cc_meter.onCreate();
+    cc_meter.onResume();
 
 
 
     while (1) {
-        mooncake.update();
         lv_timer_handler();
+
+
+        cc_meter.onRunning();
+
 
         usleep(5 * 1000);
     }
+
+
+
+
+    
+
+    // mooncake.setDisplay(SDL_HOR_RES, SDL_VER_RES);
+    
+    // // MOONCAKE::BUILTIN_APP::Launcher_Bubble* launcher = new MOONCAKE::BUILTIN_APP::Launcher_Bubble;
+    // // mooncake.setLauncher(launcher);
+
+    // mooncake.init();
+    // mooncake.installBuiltinApps();
+
+
+    // std::string name;
+    // AppTest* app_ptr = nullptr;
+
+
+
+    // // app_ptr = new AppTest("a", (void*)&ui_img_icon1_hdpi_png);
+    // // mooncake.install(app_ptr);
+    // app_ptr = new AppTest("b", (void*)&ui_img_icon2_hdpi_png);
+    // mooncake.install(app_ptr);
+    // app_ptr = new AppTest("c", (void*)&ui_img_icon3_hdpi_png);
+    // mooncake.install(app_ptr);
+    // app_ptr = new AppTest("d", (void*)&ui_img_icon4_hdpi_png);
+    // mooncake.install(app_ptr);
+    // app_ptr = new AppTest("e", (void*)&ui_img_icon5_hdpi_png);
+    // mooncake.install(app_ptr);
+    // app_ptr = new AppTest("f", (void*)&ui_img_icon6_hdpi_png);
+    // mooncake.install(app_ptr);
+    // app_ptr = new AppTest("g", (void*)&ui_img_icon7_hdpi_png);
+    // mooncake.install(app_ptr);
+    // app_ptr = new AppTest("h", (void*)&ui_img_icon8_hdpi_png);
+    // mooncake.install(app_ptr);
+    // app_ptr = new AppTest("i", (void*)&ui_img_icon9_hdpi_png);
+    // mooncake.install(app_ptr);
+    // app_ptr = new AppTest("j", (void*)&ui_img_icon10_hdpi_png);
+    // mooncake.install(app_ptr);
+
+
+
+
+    // // for (int i = 0; i < 10; i++) {
+    // //     name = "Test-" + std::to_string(i);
+    // //     // printf("%s\n", name.c_str());
+
+    // //     app_ptr = new AppTest(name.c_str());
+    // //     mooncake.install(app_ptr);
+
+    // // }
+
+
+
+    // while (1) {
+    //     mooncake.update();
+    //     lv_timer_handler();
+
+    //     usleep(5 * 1000);
+    // }
 
 
 

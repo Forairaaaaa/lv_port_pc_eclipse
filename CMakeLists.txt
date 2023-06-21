@@ -39,7 +39,13 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 
 include_directories(cc_meter/)
-add_executable(main main.cpp mouse_cursor_icon.c cc_meter/cc_meter.cpp ${SOURCES} ${INCLUDES} ${ICONS})
+file(GLOB_RECURSE CC_METER_SRCS
+    cc_meter/*.c
+    cc_meter/*.cpp
+)
+
+
+add_executable(main main.cpp mouse_cursor_icon.c ${CC_METER_SRCS} ${SOURCES} ${INCLUDES} ${ICONS})
 add_compile_definitions(LV_CONF_INCLUDE_SIMPLE)
 
 
