@@ -245,12 +245,11 @@ int main(int argc, char **argv)
     cc_meter.onResume();
 
 
-    std::array<std::string, 5> value_list;
+    std::array<std::string, 4> value_list;
     value_list[0] = "12.233";
     value_list[1] = "5.666";
     value_list[2] = "11.648";
     value_list[3] = "1.555";
-    value_list[4] = "666";
 
 
     while (1) {
